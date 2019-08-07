@@ -283,4 +283,4 @@ if [[ ${doSSH} -eq 1 ]]; then
   buildSSH
 fi
 
-
+printf "\n\n\n\033[1;32m-- Please reboot for terminal changes to take effect \033[0m\n\n\n"
