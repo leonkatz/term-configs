@@ -66,21 +66,21 @@ setGitConfig () {
     name=$2
     platform=$3
 
-    printf "\033[1;32m-- build .gitconfig\n\033[0m;"
+    printf "\033[1;32m-- build .gitconfig\033[0m\n"
 
     cp ./extras/.gitconfig .
     
     if [[ ${platform} == "mac" ]]; then
-      printf "\033[1;32m-- build .gitconfig\n\033[0m;"
+      printf "\033[1;32m-- build .gitconfig\033[0m\n"
       sed -i '' -e 's/e_temp/'${email}'/g' ./.zshrc
       sed -i '' -e 's/u_temp/'${name}'/g' ./.zshrc
     elif [[ ${platform} == "apt" ]]; then
-      printf "\033[1;32m-- build .gitconfig\n\033[0m;"
+      printf "\033[1;32m-- build .gitconfig\033[0m\n"
       sed -i 's/e_temp/'${email}'/g' ./.zshrc
       sed -i 's/u_temp/'${name}'/g' ./.zshrc
     fi
 
-    printf "\033[1;32m-- move .gitconfig\n\033[0m;"
+    printf "\033[1;32m-- move .gitconfig\033[0m\n"
 
     cp ./.gitconfig ~/.gitconfig
 }
@@ -88,73 +88,73 @@ setGitConfig () {
 installStuff () {
   platform=$1
 
-  printf "\033[1;32m-- install necissary tools\n\033[0m;"
+  printf "\033[1;32m-- install necissary tools\033[0m\n"
 
-  printf " -- Hush login message\n\033[0m;"
+  printf " -- Hush login message\033[0m\n"
   touch ~/.hushlogin
 
   if [[ ${platform} == "mac" ]]; then
-    printf "\033[1;32m-- Install Homebrew\n\033[0m;"
+    printf "\033[1;32m-- Install Homebrew\033[0m\n"
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     
-    printf "\033[1;32m-- Install zsh\n\033[0m;"
+    printf "\033[1;32m-- Install zsh\033[0m\n"
     brew install -f zsh
 
-    printf "\033[1;32m-- Install curl\n\033[0m;"
+    printf "\033[1;32m-- Install curl\033[0m\n"
     brew install -f curl
 
-    printf "\033[1;32m-- Install git\n\033[0m;"
+    printf "\033[1;32m-- Install git\033[0m\n"
     brew install -f git
 
-    printf "\033[1;32m-- Install vim\n\033[0m;"
+    printf "\033[1;32m-- Install vim\033[0m\n"
     brew install -f vim
 
-    printf "\033[1;32m-- Install wget\n\033[0m;"
+    printf "\033[1;32m-- Install wget\033[0m\n"
     brew install -f wget
 
-    printf "\033[1;32m-- install z\n\033[0m;"
+    printf "\033[1;32m-- install z\033[0m\n"
     brew install -f z
 
-    printf "\033[1;32m-- switch shell to zsh\n\033[0m;"
+    printf "\033[1;32m-- switch shell to zsh\033[0m\n"
     sudo chsh -s /usr/local/bin/zsh
 
-    printf "\033[1;32m-- install o my zsh\n\033[0m;"
+    printf "\033[1;32m-- install o my zsh\033[0m\n"
     curl -L http://install.ohmyz.sh | sh
 
-    printf "\033[1;32m-- install zsh syntax highlighting\n\033[0m;"
+    printf "\033[1;32m-- install zsh syntax highlighting\033[0m\n"
     cd ~/.oh-my-zsh && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
 
   elif [[ ${platform} == "apt" ]]; then
-    printf "\033[1;32m-- Install zsh\n\033[0m;"
+    printf "\033[1;32m-- Install zsh\033[0m\n"
     sudo apt install -y zsh
 
-    printf "\033[1;32m-- Install curl\n\033[0m;"
+    printf "\033[1;32m-- Install curl\033[0m\n"
     sudo apt install -y curl
 
-    printf "\033[1;32m-- Install git\n\033[0m;"
+    printf "\033[1;32m-- Install git\033[0m\n"
     sudo apt install -y git
 
-    printf "\033[1;32m-- Install vim\n\033[0m;"
+    printf "\033[1;32m-- Install vim\033[0m\n"
 
     sudo apt install -y vim
 
-    printf "\033[1;32m-- Install wget\n\033[0m;"
+    printf "\033[1;32m-- Install wget\033[0m\n"
     sudo apt install -y wget
 
-    printf "\033[1;32m-- install z\n\033[0m;"
+    printf "\033[1;32m-- install z\033[0m\n"
     sudo curl https://raw.githubusercontent.com/rupa/z/master/z.sh \
           -o /etc/profile.d/z.sh
 
-    printf "\033[1;32m-- switch shell to zsh\n\033[0m;"
+    printf "\033[1;32m-- switch shell to zsh\033[0m\n"
     sudo chsh -s /usr/local/bin/zsh
 
-    printf "\033[1;32m-- install o my zsh\n\033[0m;"
+    printf "\033[1;32m-- install o my zsh\033[0m\n"
     curl -L http://install.ohmyz.sh | sh
 
-    printf "\033[1;32m-- install zsh syntax highlighting\n\033[0m;"
+    printf "\033[1;32m-- install zsh syntax highlighting\033[0m\n"
     cd ~/.oh-my-zsh && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
 
-    printf "\033[1;32m-- install java 8 and 11\n\033[0m;"
+    printf "\033[1;32m-- install java 8 and 11\033[0m\n"
     sudo apt install -y openjdk-8-jdk
     sudo apt install -y openjdk-11-jdk
   fi
@@ -164,14 +164,14 @@ buildZshrc () {
   platform=$1
   name=$2
   if [[ ${platform} == "mac" ]]; then
-    printf "\033[1;32m-- build .zshrc\n\033[0m;"
+    printf "\033[1;32m-- build .zshrc\033[0m\n"
     sed -i'.backup' -e 's/user_temp/'${name}'/g' ./.zshrc
     sed -i '' -e 's/j11_temp/~\/term-configs\/scripts\/mac\/j11.sh/g' ./.zshrc
     sed -i '' -e 's/j8_temp/~\/term-configs\/scripts\/mac\/j8.sh/g' ./.zshrc
     sed -i '' -e 's/source_z_temp/. `brew --prefix`\/etc\/profile.d\/z.sh/g' ./.zshrc
 
   elif [[ ${platform} == "apt" ]]; then
-    printf "\033[1;32m-- build .zshrc\n\033[0m;"
+    printf "\033[1;32m-- build .zshrc\033[0m\n"
     sed -i'.backup' -e 's/user_temp/'${name}'/g' ./.zshrc
     sed -i 's/j11_temp/~\/term-configs\/scripts\/apt\/j11.sh/g' ./.zshrc
     sed -i 's/j8_temp/~\/term-configs\/scripts\/apt\/j8.sh/g' ./.zshrc
@@ -180,7 +180,7 @@ buildZshrc () {
 }
 
 buildSSH () {
-  printf "\033[1;32m-- build ~/.ssh/config \n\033[0m;"
+  printf "\033[1;32m-- build ~/.ssh/config \033[0m\n"
   
   if [[ -d "~/.ssh" ]]; then
     mkdir ~/.ssh
@@ -276,7 +276,7 @@ fi
 
 if [[ ${doBuild} -eq 1 ]]; then
   buildZshrc ${platform} ${bashName}
-  yes | sudo cp -rf ./.* ~/.
+  yes | sudo cp -f .zshrc .gitignore .vimrc ~/.
 fi
 
 if [[ ${doSSH} -eq 1 ]]; then
