@@ -75,8 +75,8 @@ setGitConfig () {
       sed -i '' -e 's/u_temp/'${name}'/g' ./.zshrc
     elif [[ ${platform} == "apt" ]]; then
       printf "\033[1;32m-- build .gitconfig\n\033[0m;"
-      sed 's/e_temp/'${email}'/g' ./.zshrc
-      sed 's/u_temp/'${name}'/g' ./.zshrc
+      sed -i 's/e_temp/'${email}'/g' ./.zshrc
+      sed -i 's/u_temp/'${name}'/g' ./.zshrc
     fi
 
     cp ./.gitconfig ~/.gitconfig
@@ -168,9 +168,9 @@ buildZshrc () {
   elif [[ ${platform} == "apt" ]]; then
     printf "\033[1;32m-- build .zshrc\n\033[0m;"
     sed -i'.backup' -e 's/user_temp/'${name}'/g' ./.zshrc
-    sed -i '' -e 's/j11_temp/~\/term-configs\/scripts\/apt\/j11.sh/g' ./.zshrc
-    sed -i '' -e 's/j8_temp/~\/term-configs\/scripts\/apt\/j8.sh/g' ./.zshrc
-    sed -i '' -e 's/source_z_temp/. \/etc\/profile.d\/z.sh/g' ./.zshrc
+    sed -i 's/j11_temp/~\/term-configs\/scripts\/apt\/j11.sh/g' ./.zshrc
+    sed -i 's/j8_temp/~\/term-configs\/scripts\/apt\/j8.sh/g' ./.zshrc
+    sed -i 's/source_z_temp/. \/etc\/profile.d\/z.sh/g' ./.zshrc
   fi
 }
 
