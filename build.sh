@@ -72,17 +72,17 @@ setGitConfig () {
     
     if [[ ${platform} == "mac" ]]; then
       printf "\033[1;32m-- build .gitconfig\033[0m\n"
-      sed -i '' -e 's/e_temp/'${email}'/g' ./.zshrc
-      sed -i '' -e 's/u_temp/'${name}'/g' ./.zshrc
+      sed -i '' -e 's/e_temp/'${email}'/g' .zshrc
+      sed -i '' -e 's/u_temp/'${name}'/g' .zshrc
     elif [[ ${platform} == "apt" ]]; then
       printf "\033[1;32m-- build .gitconfig\033[0m\n"
-      sed -i 's/e_temp/'${email}'/g' ./.zshrc
-      sed -i 's/u_temp/'${name}'/g' ./.zshrc
+      sed -i 's/e_temp/'${email}'/g' .zshrc
+      sed -i 's/u_temp/'${name}'/g' .zshrc
     fi
 
     printf "\033[1;32m-- move .gitconfig\033[0m\n"
 
-    cp ./.gitconfig ~/.gitconfig
+    cp .gitconfig ~/.gitconfig
 }
 
 installStuff () {
@@ -146,7 +146,7 @@ installStuff () {
           -o /etc/profile.d/z.sh
 
     printf "\033[1;32m-- switch shell to zsh\033[0m\n"
-    sudo chsh -s /usr/local/bin/zsh
+    sudo chsh -s /usr/bin/zsh
 
     printf "\033[1;32m-- install o my zsh\033[0m\n"
     curl -L http://install.ohmyz.sh | sh
@@ -165,17 +165,16 @@ buildZshrc () {
   name=$2
   if [[ ${platform} == "mac" ]]; then
     printf "\033[1;32m-- build .zshrc\033[0m\n"
-    sed -i'.backup' -e 's/user_temp/'${name}'/g' ./.zshrc
-    sed -i '' -e 's/j11_temp/~\/term-configs\/scripts\/mac\/j11.sh/g' ./.zshrc
-    sed -i '' -e 's/j8_temp/~\/term-configs\/scripts\/mac\/j8.sh/g' ./.zshrc
-    sed -i '' -e 's/source_z_temp/. `brew --prefix`\/etc\/profile.d\/z.sh/g' ./.zshrc
-
+    sed -i'.backup' -e 's/user_temp/'${name}'/g' .zshrc
+    sed -i '' -e 's/j11_temp/~\/term-configs\/scripts\/mac\/j11.sh/g' .zshrc
+    sed -i '' -e 's/j8_temp/~\/term-configs\/scripts\/mac\/j8.sh/g' .zshrc
+    sed -i '' -e 's/source_z_temp/. `brew --prefix`\/etc\/profile.d\/z.sh/g' .zshrc
   elif [[ ${platform} == "apt" ]]; then
     printf "\033[1;32m-- build .zshrc\033[0m\n"
-    sed -i'.backup' -e 's/user_temp/'${name}'/g' ./.zshrc
-    sed -i 's/j11_temp/~\/term-configs\/scripts\/apt\/j11.sh/g' ./.zshrc
-    sed -i 's/j8_temp/~\/term-configs\/scripts\/apt\/j8.sh/g' ./.zshrc
-    sed -i 's/source_z_temp/. \/etc\/profile.d\/z.sh/g' ./.zshrc
+    sed -i'.backup' -e 's/user_temp/'${name}'/g' .zshrc
+    sed -i 's/j11_temp/~\/term-configs\/scripts\/apt\/j11.sh/g' .zshrc
+    sed -i 's/j8_temp/~\/term-configs\/scripts\/apt\/j8.sh/g' .zshrc
+    sed -i 's/source_z_temp/. \/etc\/profile.d\/z.sh/g' .zshrc
   fi
 }
 
