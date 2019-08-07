@@ -14,7 +14,7 @@ printHelp () {
 
 macOrLinux () {
   name=$(uname -s)
-  if [[ ${name} -eq "Darwin" ]]; then
+  if [[ ${name} == "Darwin" ]]; then
     printf "\033[1;32m----Mac"
     return 0
   else
@@ -23,22 +23,21 @@ macOrLinux () {
   fi
 }
 
+haveProg() {
+    [[ -x "$(which $1)" ]]
+}
+
 linuxPackageManager () {
-  YUM_CMD=$(which yum)
-  APT_CMD=$(which apt)
-  # OTHER_CMD=$(which <other installer>)
-  
-  if [[ ! -z $YUM_CMD ]]; then
-    printf "use yum"
-    return "yum"
-  elif [[ ! -z $APT_GET_CMD ]]; then
-    printf "use apt"
-    return "apt"
-  # elif [[ ! -z $OTHER_CMD ]]; then
-   # $OTHER_CMD <proper arguments>
+    
+  if haveProg yum ; then
+    printf "\nuse yum\n"
+    return 0
+  elif haveProg apt ; then
+    printf "\nuse apt\n"
+    return 1
   else
-    printf "Cant install packages"
-    return "other";
+    printf "\nCant install packages\n"
+    return 127;
   fi
 }
 
@@ -67,7 +66,9 @@ setGitConfig () {
     name=$2
     platform=$3
 
-    cp ./extras/.gitconfig ./.
+    printf "\033[1;32m-- build .gitconfig\n\033[0m;"
+
+    cp ./extras/.gitconfig .
     
     if [[ ${platform} == "mac" ]]; then
       printf "\033[1;32m-- build .gitconfig\n\033[0m;"
@@ -79,11 +80,15 @@ setGitConfig () {
       sed -i 's/u_temp/'${name}'/g' ./.zshrc
     fi
 
+    printf "\033[1;32m-- move .gitconfig\n\033[0m;"
+
     cp ./.gitconfig ~/.gitconfig
 }
 
 installStuff () {
   platform=$1
+
+  printf "\033[1;32m-- install necissary tools\n\033[0m;"
 
   printf " -- Hush login message\n\033[0m;"
   touch ~/.hushlogin
@@ -175,7 +180,9 @@ buildZshrc () {
 }
 
 buildSSH () {
-  if [[ !-d "~/.ssh" ]]; then
+  printf "\033[1;32m-- build ~/.ssh/config \n\033[0m;"
+  
+  if [[ -d "~/.ssh" ]]; then
     mkdir ~/.ssh
   fi
 
@@ -245,7 +252,11 @@ platform=$?
 if [[ ${platform} -eq 1 ]]; then
   linuxPackageManager
   platform=$?
-  if [[ ${platform} == "other" ]]; then
+  if [[ ${platform} -eq 0 ]]; then
+    platform="yum"
+  elif [[ ${platform} -eq 1 ]]; then
+    platform="apt"
+  elif [[ ${platform} -eq 127 ]]; then
     exit 1
   fi
 fi
@@ -265,7 +276,7 @@ fi
 
 if [[ ${doBuild} -eq 1 ]]; then
   buildZshrc ${platform} ${bashName}
-  yes | sudo cp -rf .* ~/.
+  yes | sudo cp -rf ./.* ~/.
 fi
 
 if [[ ${doSSH} -eq 1 ]]; then
