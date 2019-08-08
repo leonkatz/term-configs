@@ -171,7 +171,7 @@ buildZshrc () {
     sed -i '' -e 's/source_z_temp/. `brew --prefix`\/etc\/profile.d\/z.sh/g' .zshrc
   elif [[ ${platform} == "apt" ]]; then
     printf "\033[1;32m-- build .zshrc\033[0m\n"
-    sed -i'.backup' -e 's/user_temp/'${name}'/g' .zshrc
+    sed -i 's/user_temp/'${name}'/g' .zshrc
     sed -i 's/j11_temp/~\/term-configs\/scripts\/apt\/j11.sh/g' .zshrc
     sed -i 's/j8_temp/~\/term-configs\/scripts\/apt\/j8.sh/g' .zshrc
     sed -i 's/source_z_temp/. \/etc\/profile.d\/z.sh/g' .zshrc
@@ -273,6 +273,7 @@ if [[ ${doInstall} -eq 1 ]]; then
   installStuff ${platform}
 fi
 
+cd "$parent_path"
 if [[ ${doBuild} -eq 1 ]]; then
   buildZshrc ${platform} ${bashName}
   yes | sudo cp -f .zshrc .gitignore .vimrc ~/.
