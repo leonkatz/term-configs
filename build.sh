@@ -90,7 +90,7 @@ installStuff () {
 
   printf "\033[1;32m-- install necissary tools\033[0m\n"
 
-  printf " -- Hush login message\033[0m\n"
+  printf "\033[1;32mreboot-- Hush login message\033[0m\n"
   touch ~/.hushlogin
 
   if [[ ${platform} == "mac" ]]; then
