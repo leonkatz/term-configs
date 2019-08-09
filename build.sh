@@ -128,6 +128,21 @@ installStuff () {
     printf "\033[1;32m-- install zsh syntax highlighting\033[0m\n"
     cd ~/.oh-my-zsh && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
 
+    printf "\033[1;32m-- install powerlevel9k oh my zsh theme\033[0m\n"
+    git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+
+    printf "\033[1;32m-- install powerline fonts\033[0m\n"
+    # clone
+    git clone https://github.com/powerline/fonts.git --depth=1
+    # install
+    cd fonts
+    ./install.sh
+    # clean-up a bit
+    cd ..
+    rm -rf fonts
+
+    printf "\033[1;31m-- Please chage terminal fonts to a powerline font\033[0m\n"
+
   elif [[ ${platform} == "apt" ]]; then
     printf "\033[1;32m-- Install zsh\033[0m\n"
     sudo apt install -y zsh
@@ -160,6 +175,19 @@ installStuff () {
     printf "\033[1;32m-- install java 8 and 11\033[0m\n"
     sudo apt install -y openjdk-8-jdk
     sudo apt install -y openjdk-11-jdk
+
+    printf "\033[1;32m-- install powerlevel9k oh my zsh theme\033[0m\n"
+    git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+
+    printf "\033[1;32m-- install powerline fonts\033[0m\n"
+    # clone
+    git clone https://github.com/powerline/fonts.git --depth=1
+    # install
+    cd fonts
+    ./install.sh
+    # clean-up a bit
+    cd ..
+    rm -rf fonts
 
   elif [[ ${platform} == "yum" ]]; then
     printf "\033[1;32m-- Install zsh\033[0m\n"
@@ -194,6 +222,20 @@ installStuff () {
     printf "\033[1;32m-- install java 8 and 11\033[0m\n"
     sudo yum install -y java-1.8.0-openjdk-devel
     sudo yum install -y java-11-openjdk-devel
+
+    printf "\033[1;32m-- install powerlevel9k oh my zsh theme\033[0m\n"
+    git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+
+    printf "\033[1;32m-- install powerline fonts\033[0m\n"
+    # clone
+    git clone https://github.com/powerline/fonts.git --depth=1
+    # install
+    cd fonts
+    ./install.sh
+    # clean-up a bit
+    cd ..
+    rm -rf fonts
+
   fi
 }
 

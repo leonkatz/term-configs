@@ -72,7 +72,7 @@ plugins=(git brew npm docker docker-compose iterm2 mvn node)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-. `brew --prefix`/etc/profile.d/z.sh
+source_z_temp
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs aws)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
