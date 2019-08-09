@@ -72,12 +72,16 @@ setGitConfig () {
     
     if [[ ${platform} == "mac" ]]; then
       printf "\033[1;32m-- build .gitconfig\033[0m\n"
-      sed -i '' -e 's/e_temp/'${email}'/g' .zshrc
-      sed -i '' -e 's/u_temp/'${name}'/g' .zshrc
+      sed -i '' -e 's/e_temp/'${email}'/g' .gitconfig
+      sed -i '' -e 's/u_temp/'${name}'/g' .gitconfig
     elif [[ ${platform} == "apt" ]]; then
       printf "\033[1;32m-- build .gitconfig\033[0m\n"
-      sed -i 's/e_temp/'${email}'/g' .zshrc
-      sed -i 's/u_temp/'${name}'/g' .zshrc
+      sed -i 's/e_temp/'${email}'/g' .gitconfig
+      sed -i 's/u_temp/'${name}'/g' .gitconfig
+    elif [[ ${platform} == "yum" ]]; then
+      printf "\033[1;32m-- build .gitconfig\033[0m\n"
+      sed -i 's/e_temp/'${email}'/g' .gitconfig
+      sed -i 's/u_temp/'${name}'/g' .gitconfig
     fi
 
     printf "\033[1;32m-- move .gitconfig\033[0m\n"
@@ -135,7 +139,6 @@ installStuff () {
     sudo apt install -y git
 
     printf "\033[1;32m-- Install vim\033[0m\n"
-
     sudo apt install -y vim
 
     printf "\033[1;32m-- Install wget\033[0m\n"
@@ -157,6 +160,40 @@ installStuff () {
     printf "\033[1;32m-- install java 8 and 11\033[0m\n"
     sudo apt install -y openjdk-8-jdk
     sudo apt install -y openjdk-11-jdk
+
+  elif [[ ${platform} == "yum" ]]; then
+    printf "\033[1;32m-- Install zsh\033[0m\n"
+    sudo yum install -y zsh
+
+    printf "\033[1;32m-- Install curl\033[0m\n"
+    sudo yum install -y curl
+
+    printf "\033[1;32m-- Install git\033[0m\n"
+    sudo yum install -y git
+
+    printf "a\033[1;32m-- Install vim\033[0m\n"
+    sudo yum install -y vim
+
+    printf "\033[1;32m-- Install wget\033[0m\n"
+    sudo yum install -y wget
+
+    printf "\033[1;32m-- install z\033[0m\n"
+    sudo curl https://raw.githubusercontent.com/rupa/z/master/z.sh \
+          -o /etc/profile.d/z.sh
+
+    printf "\033[1;32m-- switch shell to zsh\033[0m\n"
+    echo "/usr/bin/zsh" | sudo tee -a /etc/shells
+    sudo chsh -s /usr/bin/zsh
+
+    printf "\033[1;32m-- install o my zsh\033[0m\n"
+    curl -L http://install.ohmyz.sh | sh
+
+    printf "\033[1;32m-- install zsh syntax highlighting\033[0m\n"
+    cd ~/.oh-my-zsh && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
+
+    printf "\033[1;32m-- install java 8 and 11\033[0m\n"
+    sudo yum install -y java-1.8.0-openjdk-devel
+    sudo yum install -y java-11-openjdk-devel
   fi
 }
 
@@ -174,6 +211,12 @@ buildZshrc () {
     sed -i 's/user_temp/'${name}'/g' .zshrc
     sed -i 's/j11_temp/~\/term-configs\/scripts\/apt\/j11.sh/g' .zshrc
     sed -i 's/j8_temp/~\/term-configs\/scripts\/apt\/j8.sh/g' .zshrc
+    sed -i 's/source_z_temp/. \/etc\/profile.d\/z.sh/g' .zshrc
+  elif [[ ${platform} == "yum" ]]; then
+    printf "\033[1;32m-- build .zshrc\033[0m\n"
+    sed -i 's/user_temp/'${name}'/g' .zshrc
+    sed -i 's/j11_temp/~\/term-configs\/scripts\/yum\/j11.sh/g' .zshrc
+    sed -i 's/j8_temp/~\/term-configs\/scripts\/yum\/j8.sh/g' .zshrc
     sed -i 's/source_z_temp/. \/etc\/profile.d\/z.sh/g' .zshrc
   fi
 }
