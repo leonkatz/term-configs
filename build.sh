@@ -180,9 +180,8 @@ installStuff () {
     git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
     chmod 755 oh-my-zsh.sh
 
-    cd
-
     printf "\033[1;32m-- install powerline fonts\033[0m\n"
+    cd
     # clone
     git clone https://github.com/powerline/fonts.git --depth=1
     # install
