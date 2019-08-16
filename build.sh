@@ -213,7 +213,7 @@ installStuff () {
 
     printf "\033[1;32m-- switch shell to zsh\033[0m\n"
     echo "/usr/bin/zsh" | sudo tee -a /etc/shells
-    sudo chsh -s /usr/bin/zsh
+    chsh -s /usr/bin/zsh
 
     printf "\033[1;32m-- install o my zsh\033[0m\n"
     curl -L http://install.ohmyz.sh | sh
