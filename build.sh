@@ -271,9 +271,7 @@ buildZshrc () {
 buildSSH () {
   printf "\033[1;32m-- build ~/.ssh/config \033[0m\n"
   
-  if [[ -d "~/.ssh" ]]; then
-    mkdir ~/.ssh
-  fi
+  mkdir ~/.ssh
 
   if [[ -e "~/.ssh/config" ]]; then
     echo "$(cat ./extras/.ssh/config ~/.ssh/config)" > ~/.ssh/config
