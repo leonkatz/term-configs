@@ -12,4 +12,8 @@ to run first use the setup command below, then use the run command below that an
 
 ### Run
 
+#### Full install
 `bash build.sh -g --git-email <Email for Git profile> --git-username <Username for Git profile>`
+
+#### No Install
+`bash build.sh -g --git-email <Email for Git profile> --git-username <Userna    me for Git profile> --do-not-install --do-not-build`
