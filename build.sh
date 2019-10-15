@@ -335,15 +335,20 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 macOrLinux
 platform=$?
+pm="mac"
+fontDir=""
 
-if [[ ${platform} -eq 1 ]]; then
+if [[ ${platform} -eq 0 ]]; then
+  fontDir="${HOME}/Library/Fonts"
+elif [[ ${platform} -eq 1 ]]; then
+  fontDir="${HOME}/.local/share/fonts"
   linuxPackageManager
-  platform=$?
-  if [[ ${platform} -eq 0 ]]; then
-    platform="yum"
-  elif [[ ${platform} -eq 1 ]]; then
-    platform="apt"
-  elif [[ ${platform} -eq 127 ]]; then
+  pm=$?
+  if [[ ${pm} -eq 0 ]]; then
+    pm="yum"
+  elif [[ ${pm} -eq 1 ]]; then
+    pm="apt"
+  elif [[ ${pm} -eq 127 ]]; then
     exit 1
   fi
 fi
@@ -358,12 +363,18 @@ elif [[ ${gitConfig} -eq 1 ]]; then
 fi
 
 if [[ ${doInstall} -eq 1 ]]; then
-  installStuff ${platform}
+  installStuff ${pm}
+  printf "\033[1;32m-- install powerline fonts\033[0m\n"
+  cp -a ./extras/fonts/. ${fontDir}/
+  if which fc-cache >/dev/null 2>&1 ; then
+    echo "Resetting font cache, this may take a moment..."
+    fc-cache -f "$font_dir"
+  fi
 fi
 
 cd "$parent_path"
 if [[ ${doBuild} -eq 1 ]]; then
-  buildZshrc ${platform} ${bashName}
+  buildZshrc ${pm} ${bashName}
   yes | sudo cp -f .zshrc .vimrc .p10k.zsh ~/.
 fi
 
