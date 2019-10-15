@@ -128,8 +128,8 @@ installStuff () {
     printf "\033[1;32m-- install zsh syntax highlighting\033[0m\n"
     cd ~/.oh-my-zsh && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
 
-    printf "\033[1;32m-- install powerlevel9k oh my zsh theme\033[0m\n"
-    git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+    printf "\033[1;32m-- install powerlevel10k oh my zsh theme\033[0m\n"
+    git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
     printf "\033[1;32m-- install powerline fonts\033[0m\n"
     cd
@@ -177,8 +177,8 @@ installStuff () {
     sudo apt install -y openjdk-8-jdk
     sudo apt install -y openjdk-11-jdk
 
-    printf "\033[1;32m-- install powerlevel9k oh my zsh theme\033[0m\n"
-    git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+    printf "\033[1;32m-- install powerlevel10k oh my zsh theme\033[0m\n"
+    git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
     chmod 755 oh-my-zsh.sh
 
     printf "\033[1;32m-- install powerline fonts\033[0m\n"
@@ -226,8 +226,8 @@ installStuff () {
     sudo yum install -y java-1.8.0-openjdk-devel
     sudo yum install -y java-11-openjdk-devel
 
-    printf "\033[1;32m-- install powerlevel9k oh my zsh theme\033[0m\n"
-    git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+    printf "\033[1;32m-- install powerlevel10k oh my zsh theme\033[0m\n"
+    git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
     chmod 755 oh-my-zsh.sh
 
     printf "\033[1;32m-- install powerline fonts\033[0m\n"
@@ -364,7 +364,7 @@ fi
 cd "$parent_path"
 if [[ ${doBuild} -eq 1 ]]; then
   buildZshrc ${platform} ${bashName}
-  yes | sudo cp -f .zshrc .gitignore .vimrc ~/.
+  yes | sudo cp -f .zshrc .gitignore .vimrc .p10k.zsh ~/.
 fi
 
 if [[ ${doSSH} -eq 1 ]]; then
