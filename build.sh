@@ -131,17 +131,6 @@ installStuff () {
     printf "\033[1;32m-- install powerlevel10k oh my zsh theme\033[0m\n"
     git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
 
-    printf "\033[1;32m-- install powerline fonts\033[0m\n"
-    cd
-    # clone
-    git clone https://github.com/powerline/fonts.git --depth=1
-    # install
-    cd fonts
-    ./install.sh
-    # clean-up a bit
-    cd ..
-    rm -rf fonts
-
     printf "\033[1;31m-- Please chage terminal fonts to a powerline font\033[0m\n"
 
   elif [[ ${platform} == "apt" ]]; then
@@ -181,17 +170,6 @@ installStuff () {
     git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
     chmod 755 oh-my-zsh.sh
 
-    printf "\033[1;32m-- install powerline fonts\033[0m\n"
-    cd
-    # clone
-    git clone https://github.com/powerline/fonts.git --depth=1
-    # install
-    cd fonts
-    ./install.sh
-    # clean-up a bit
-    cd ..
-    rm -rf fonts
-
   elif [[ ${platform} == "yum" ]]; then
     printf "\033[1;32m-- Install zsh\033[0m\n"
     sudo yum install -y zsh
@@ -229,17 +207,6 @@ installStuff () {
     printf "\033[1;32m-- install powerlevel10k oh my zsh theme\033[0m\n"
     git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
     chmod 755 oh-my-zsh.sh
-
-    printf "\033[1;32m-- install powerline fonts\033[0m\n"
-    cd
-    # clone
-    git clone https://github.com/powerline/fonts.git --depth=1
-    # install
-    cd fonts
-    ./install.sh
-    # clean-up a bit
-    cd ..
-    rm -rf fonts
 
   fi
 }
