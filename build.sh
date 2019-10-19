@@ -332,7 +332,7 @@ fi
 if [[ ${doInstall} -eq 1 ]]; then
   installStuff ${pm}
   printf "\033[1;32m-- install powerline fonts\033[0m\n"
-  cp -a ./extras/fonts/. ${fontDir}/
+  cp -a ./extras/fonts/. ${fontDir}/.
   if which fc-cache >/dev/null 2>&1 ; then
     echo "Resetting font cache, this may take a moment..."
     fc-cache -f "$font_dir"
