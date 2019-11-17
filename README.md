@@ -1,4 +1,4 @@
-# term-configs
+#term-configs
 
 Configurations for unix system settings.
 
@@ -17,3 +17,13 @@ to run first use the setup command below, then use the run command below that an
 
 #### No Install
 `bash build.sh -g --git-email <Email for Git profile> --git-username <Userna    me for Git profile> --do-not-install --do-not-build`
+
+### Raspberry-Pi Specifics
+
+z.sh does not work on raspberry pi. To remove it you must run the following
+commands after install. 
+
+`sudo rm -f /etc/profile.d/z.sh`
+
+`sed -i '75d' ~/.zshrc`
+
