@@ -8,7 +8,13 @@ to run first use the setup command below, then use the run command below that an
 
 ### Setup
 
+#### Linux
+
 `cd;wget -P ~/ https://github.com/ColdFerrin/term-configs/archive/master.zip;unzip master.zip;rm master.zip;mv term-configs-master/ term-configs/;cd term-configs;`
+
+#### Mac
+
+`cd;curl -L -O https://github.com/ColdFerrin/term-configs/archive/master.zip;unzip master.zip;rm master.zip;mv term-configs-master/ term-configs/;cd term-configs;`
 
 ### Run
 
