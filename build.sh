@@ -131,6 +131,11 @@ installStuff () {
     printf "\033[1;32m-- install powerlevel10k oh my zsh theme\033[0m\n"
     git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
 
+    printf "\033[1;32m-- install java 8 and 11\033[0m\n"
+    brew tap adoptopenjdk/openjdk
+    brew cask install openjdk8
+    brew cask install openjdk11
+    
     printf "\033[1;31m-- Please chage terminal fonts to a powerline font\033[0m\n"
 
   elif [[ ${platform} == "apt" ]]; then
