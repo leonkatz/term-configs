@@ -18,10 +18,13 @@ to run first use the setup command below, then use the run command below that an
 
 ### Run
 
-#### Full install
+#### Standard Install
+`bash build.sh`
+
+#### Install with git config
 `bash build.sh -g --git-email <Email for Git profile> --git-username <Username for Git profile>`
 
-#### No Install
+#### Git and ssh setup only
 `bash build.sh -g --git-email <Email for Git profile> --git-username <Userna    me for Git profile> --do-not-install --do-not-build`
 
 ### Raspberry-Pi Specifics
