@@ -18,13 +18,18 @@ to run first use the setup command below, then use the run command below that an
 
 ### Run
 
-#### Full install
+#### Standard Install
+`bash build.sh`
+
+#### Install with git config
 `bash build.sh -g --git-email <Email for Git profile> --git-username <Username for Git profile>`
 
-#### No Install
-`bash build.sh -g --git-email <Email for Git profile> --git-username <Userna    me for Git profile> --do-not-install --do-not-build`
+#### Git and ssh setup only
+`bash build.sh -g --git-email <Email for Git profile> --git-username <Username for Git profile> --do-not-install --do-not-build`
 
-### Raspberry-Pi Specifics
+## Platform Specific Fixes
+
+### Raspberry-Pi Fixes
 
 z.sh does not work on raspberry pi. To remove it you must run the following
 commands after install. 
@@ -33,3 +38,9 @@ commands after install.
 
 `sed -i '75d' ~/.zshrc`
 
+### Ubuntu Platform Specific fixes
+
+Sometimes on ubuntu openjdk<C-F5> 8 does not get added as a valid alternative, If this is the case run the following command.
+
+`sudo update-alternatives --install "/usr/bin/java" "java"
+"/usr/lib/jvm/java-8-openjdk-amd64/bin/java" 1082`
