@@ -10,16 +10,16 @@ to run first use the setup command below, then use the run command below that an
 
 #### Linux
 
-`cd;wget -P ~/ https://github.com/ColdFerrin/term-configs/archive/master.zip;unzip master.zip;rm master.zip;mv term-configs-master/ term-configs/;cd term-configs;`
+`cd;wget -P ~/ https://github.com/leonkatz/term-configs/archive/master.zip;unzip master.zip;rm master.zip;mv term-configs-master/ term-configs/;cd term-configs;`
 
 #### Mac
 
-`cd;curl -L -O https://github.com/ColdFerrin/term-configs/archive/master.zip;unzip master.zip;rm master.zip;mv term-configs-master/ term-configs/;cd term-configs;`
+`cd;curl -L -O https://github.com/leonkatz/term-configs/archive/master.zip;unzip master.zip;rm master.zip;mv term-configs-master/ term-configs/;cd term-configs;`
 
 ### Run
 
 #### Standard Install
-`bash build.sh`
+`bash build.sh --do-not-set-ssh`
 
 #### Install with git config
 `bash build.sh -g --git-email <Email for Git profile> --git-username <Username for Git profile>`
